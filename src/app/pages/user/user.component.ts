@@ -45,10 +45,10 @@ export class UserComponent implements OnInit {
     this.posts = [];
     this.postsToShow = 3;
 
-    // We could cache the user from the main load...
+    // Pulling from the cache
     this.usersvc.getUserById(userId).then( user => {
-      this.user = user;
 
+      this.user = user;
 
       this.loadPosts(userId);
     })

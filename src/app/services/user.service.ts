@@ -12,6 +12,8 @@ export class UserService {
 
   private path: string = 'users';
 
+  private cache?: Array<User>;
+
 
   constructor(
     private http: HttpClient
@@ -20,8 +22,15 @@ export class UserService {
 
   getAllUsers(): Promise<Array<User>> {
 
+    // Adding in a simple cache to prevent reloading user data
+    if (this.cache) {
+      return Promise.resolve(this.cache);
+    }
+
+
     return this.http.get(`${environment.apiBase}${this.path}`).toPromise()
     .then( data => {
+      this.cache = data as Array<User>;
       return data as Array<User>;
     })
     .catch( error => {
@@ -34,6 +43,10 @@ export class UserService {
 
   getUserById(userId: number): Promise<User | undefined>  {
 
+    // Another simple cache with fallback
+    if (this.cache) {
+      return Promise.resolve(this.cache.find( u => { return u.id === Number(userId); }));
+    }
 
     return this.http.get(`${environment.apiBase}${this.path}/${userId}`).toPromise()
     .then( data => {
