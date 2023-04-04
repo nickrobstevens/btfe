@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user.model';
+import { CommentService } from 'src/app/services/comment.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -19,8 +20,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private usersvc: UserService,
-    private postsvc: PostService
+    private postsvc: PostService,
+    private commentsvc: CommentService
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +49,21 @@ export class UserComponent implements OnInit {
   }
 
 
-  showComments(postID: number) {}
+  showComments(postID: number) {
+
+
+    this.commentsvc.getCommentsByPostId(postID).then( comments => {
+      const post = this.posts.find( post => { return post.id === postID; });
+
+      if (post) {
+        post.comments = comments || [];
+      }
+
+
+    })
+
+
+  }
 
 
 }

@@ -9,7 +9,13 @@
       <div class="post-body">
         {{post.body}}
       </div>
-      <button class="btn" (click)="showComments(post.id)"></button>
+      <div class="post-comments">
+        <div *ngFor="let comment of post.comments">
+          <h3>{{comment.name}} ({{comment.email}})</h3>
+          <p>{{comment.body}}</p>
+        </div>
+      </div>
+      <button class="btn" (click)="showComments(post.id)">Expand</button>
     </div>
 
   </div>
