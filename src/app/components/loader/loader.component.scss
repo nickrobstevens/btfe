@@ -1,3 +1,5 @@
+@import 'src/scss/variables';
+
 :host {
 
   // Simple spinner animation from: https://codepen.io/supah/pen/BjYLdW
@@ -12,7 +14,7 @@
     height: 50px;
 
     & .path {
-      stroke: #00ccff;
+      stroke: $blue;
       stroke-linecap: round;
       animation: dash 1.5s ease-in-out infinite;
     }
