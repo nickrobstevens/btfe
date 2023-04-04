@@ -31,7 +31,8 @@
               <h3>Comments:</h3>
 
               <div *ngFor="let comment of post.comments" class="post-comment">
-                <h4>{{comment.name}} ({{comment.email}})</h4>
+                <h4>{{comment.email}} commented: </h4>
+                <p>{{comment.name}}</p>
                 <p>{{comment.body}}</p>
               </div>
 
