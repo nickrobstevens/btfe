@@ -2,7 +2,7 @@
 
   <ul *ngFor="let user of users">
     <li>
-      <a [routerLink]="['/user',user.id]" [routerLinkActive]="'active'">{{user.name}}</a>
+      <a [routerLink]="['/user',user.id]" [routerLinkActive]="'active'">{{user.name | firstNameOnly}}</a>
     </li>
   </ul>
 

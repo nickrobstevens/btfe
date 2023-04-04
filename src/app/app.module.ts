@@ -8,6 +8,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { UserComponent } from './pages/user/user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { FirstNameOnlyPipe } from './pipes/first-name-only.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     IndexComponent,
     UserComponent,
     HeaderComponent,
-    LoaderComponent
+    LoaderComponent,
+    FirstNameOnlyPipe
   ],
   imports: [
     BrowserModule,
