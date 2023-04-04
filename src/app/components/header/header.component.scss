@@ -16,15 +16,16 @@
     li a {
       margin: 8px;
       padding: 8px 16px;
-      background-color: $blue;
-      color: $white;
+      color: var(--bs-white);
       font-weight: 500;
       text-decoration: none;
 
 
       &:hover,
       &.active {
-        background-color: $orange;
+
+        background-color: var(--bs-orange);
+        border-color: var(--bs-orange);
       }
 
     }

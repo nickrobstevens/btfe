@@ -2,6 +2,13 @@
 
 :host {
 
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+
+
   // Simple spinner animation from: https://codepen.io/supah/pen/BjYLdW
   .spinner {
     animation: rotate 2s linear infinite;
@@ -14,7 +21,7 @@
     height: 50px;
 
     & .path {
-      stroke: $blue;
+      stroke: var(--bs-blue);
       stroke-linecap: round;
       animation: dash 1.5s ease-in-out infinite;
     }

@@ -1,3 +1,5 @@
-<app-header [users]="users"></app-header>
+<app-header *ngIf="users" [users]="users"></app-header>
+
+<app-loader *ngIf="!users"></app-loader>
 
 <router-outlet></router-outlet>

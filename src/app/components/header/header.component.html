@@ -2,7 +2,7 @@
 
   <ul>
     <li *ngFor="let user of users">
-      <a [routerLink]="['/user',user.id]" [routerLinkActive]="'active'">{{user.name | firstNameOnly}}</a>
+      <a class="btn btn-primary" [routerLink]="['/user',user.id]" [routerLinkActive]="'active'">{{user.name | firstNameOnly}}</a>
     </li>
   </ul>
 

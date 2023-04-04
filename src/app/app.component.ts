@@ -10,7 +10,7 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   title = 'btfe';
 
-  public users: Array<User> = [];
+  public users?: Array<User>;
 
   constructor(
     private usersvc: UserService
