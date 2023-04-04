@@ -4,12 +4,13 @@
 <div *ngIf="posts.length > 0 && loaded" class="user">
 
   <div class="user-posts">
-    <div *ngFor="let post of posts" class="user-post">
+    <div *ngFor="let post of posts | slice:0:postsToShow" class="user-post">
       <h2>{{post.title}}</h2>
       <div class="post-body">
         {{post.body}}
       </div>
-      <div class="post-comments">
+      <div *ngIf="expandedPosts[post.id]" class="post-comments">
+        <app-loader *ngIf="!post.comments"></app-loader>
         <div *ngFor="let comment of post.comments">
           <h3>{{comment.name}} ({{comment.email}})</h3>
           <p>{{comment.body}}</p>
@@ -20,6 +21,9 @@
 
   </div>
 
+  <div class="user-actions">
+    <button class="btn" (click)="showAllPosts()">Load All</button>
+  </div>
 
 </div>
 

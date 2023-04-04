@@ -18,6 +18,10 @@ export class UserComponent implements OnInit {
   public posts: Array<Post> = [];
   public loaded: boolean = false; // Has the user been loaded
 
+  public postsToShow: number = 3;
+
+  public expandedPosts: {[postID: string]: boolean} = {};
+
   constructor(
     private route: ActivatedRoute,
     private postsvc: PostService,
@@ -34,12 +38,16 @@ export class UserComponent implements OnInit {
   }
 
 
+  resetUser() {
+    this.loaded = false;
+    this.posts = [];
+    this.postsToShow = 3;
+  }
 
 
   loadPosts(userID: string) {
-    this.loaded = false;
-    this.posts = [];
 
+    this.resetUser();
 
     this.postsvc.getPostsByUserID(userID).then( posts => {
       this.posts = posts || [];
@@ -48,9 +56,14 @@ export class UserComponent implements OnInit {
 
   }
 
+  showAllPosts() {
+    this.postsToShow = -1;
+  }
+
 
   showComments(postID: number) {
 
+    this.expandedPosts[postID] = true;  // Could use this as a toggle
 
     this.commentsvc.getCommentsByPostId(postID).then( comments => {
       const post = this.posts.find( post => { return post.id === postID; });
