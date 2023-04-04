@@ -4,7 +4,12 @@
 
   display: block;
   position: relative;
-  padding: 8px 0;
+
+
+  header {
+    padding: 8px 0 20px;
+    overflow-x: scroll;
+  }
 
   ul {
     list-style-type: none;

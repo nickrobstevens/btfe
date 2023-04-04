@@ -1,7 +1,7 @@
 
 <app-loader *ngIf="!loaded"></app-loader>
 
-<div *ngIf="user && posts.length > 0 && loaded" class="user">
+<div *ngIf="user && posts.length > 0 && loaded" class="container user">
 
   <div *ngIf="user" class="user">
     <h1>Posts from {{user.name}}:</h1>
@@ -10,6 +10,9 @@
   <div class="user-posts">
 
     <div *ngFor="let post of posts | slice:0:postsToShow" class="user-post card">
+
+      <button class="btn btn-primary" (click)="showComments(post.id)">Expand</button>
+
       <div class="card-body">
         <h2>{{post.title}}</h2>
         <div class="post-body">
@@ -18,17 +21,22 @@
       </div>
 
       <div *ngIf="expandedPosts[post.id]" class="post-comments card-body">
+
         <h3>Comments:</h3>
-        <app-loader *ngIf="!post.comments"></app-loader>
+
         <div *ngFor="let comment of post.comments" class="post-comment">
           <h4>{{comment.name}} ({{comment.email}})</h4>
           <p>{{comment.body}}</p>
         </div>
+
+        <app-loader *ngIf="!post.comments"></app-loader>
+
       </div>
-      <button class="btn btn-primary" (click)="showComments(post.id)">Expand</button>
+
     </div>
 
   </div>
+
 
   <div class="user-actions">
     <button class="btn btn-primary" (click)="showAllPosts()">Load All</button>
