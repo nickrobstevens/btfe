@@ -31,7 +31,7 @@ export class PostService {
   }
 
 
-  getPostsByUserID(userId: string): Promise<Array<Post> | undefined>  {
+  getPostsByUserID(userId: number): Promise<Array<Post> | undefined>  {
 
 
     return this.http.get(`${environment.apiBase}${this.path}/?userId=${userId}`).toPromise()

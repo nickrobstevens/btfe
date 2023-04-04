@@ -32,7 +32,7 @@ export class UserService {
   }
 
 
-  getUserById(userId: string): Promise<User | undefined>  {
+  getUserById(userId: number): Promise<User | undefined>  {
 
 
     return this.http.get(`${environment.apiBase}${this.path}/${userId}`).toPromise()

@@ -24,6 +24,7 @@ export class UserComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private usersvc: UserService,
     private postsvc: PostService,
     private commentsvc: CommentService
   ) { }
@@ -32,22 +33,30 @@ export class UserComponent implements OnInit {
 
 
     this.route.params.subscribe( params => {
-      this.loadPosts(params['userID']);
+      this.loadUser(params['userID']);
     });
 
   }
 
 
-  resetUser() {
+  loadUser(userId: number) {
+
     this.loaded = false;
     this.posts = [];
     this.postsToShow = 3;
+
+    // We could cache the user from the main load...
+    this.usersvc.getUserById(userId).then( user => {
+      this.user = user;
+
+
+      this.loadPosts(userId);
+    })
+
   }
 
 
-  loadPosts(userID: string) {
-
-    this.resetUser();
+  loadPosts(userID: number) {
 
     this.postsvc.getPostsByUserID(userID).then( posts => {
       this.posts = posts || [];
