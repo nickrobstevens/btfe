@@ -1,1 +1,9 @@
-<p>header works!</p>
+<header>
+
+  <ul *ngFor="let user of users">
+    <li>
+      <a [routerLink]="['/user',user.id]" [routerLinkActive]="'active'">{{user.name}}</a>
+    </li>
+  </ul>
+
+</header>
