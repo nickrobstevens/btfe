@@ -34,6 +34,13 @@
           },
           "configurations": {
             "production": {
+              "outputPath": "dist/prod",
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": true,
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -54,7 +61,36 @@
               ],
               "outputHashing": "all"
             },
+            "staging": {
+              "outputPath": "dist/stage",
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": true,
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
+              "outputPath": "dist/dev",
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -74,6 +110,9 @@
             "development": {
               "browserTarget": "btfe:build:development"
             }
+          },
+          "options": {
+            "port": 4208
           },
           "defaultConfiguration": "development"
         },
